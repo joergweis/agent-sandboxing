@@ -1,0 +1,17 @@
+# MXC SDK (installed per machine: npm install @microsoft/mxc-sdk)
+node_modules/
+package-lock.json
+package.json
+
+# Runtime artefacts
+*.jsonl
+denials.json
+Adjusted_*.json
+*.etl
+logs/
+
+# Python / OS
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

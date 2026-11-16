@@ -1,0 +1,24 @@
+# Hosts the sandboxed agent may reach (HTTPS/443 unless a port is given).
+# Starting point - tune it from egress.jsonl (every deny is logged there).
+
+# --- Claude Code ---
+api.anthropic.com
+claude.ai                 # OAuth login (/login); drop if you only use an API key
+platform.claude.com       # OAuth login / console
+console.anthropic.com
+
+# --- Git hosting + Claude Code plugin marketplaces ---
+github.com
+api.github.com
+codeload.github.com
+raw.githubusercontent.com
+objects.githubusercontent.com
+# dev.azure.com          # Azure DevOps repos
+# *.visualstudio.com
+# git.rubicon.internal   # your internal Git host
+
+# --- Package registries (npx-based MCP servers, npm install, pip install) ---
+registry.npmjs.org
+# pypi.org
+# files.pythonhosted.org
+# artifactory.rubicon.internal   # better: route everything through your internal mirror only

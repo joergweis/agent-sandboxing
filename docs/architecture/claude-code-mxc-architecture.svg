@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 960" width="1500" height="960" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<defs>
+<marker id="a-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+<marker id="a-net" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#EA580C"/></marker>
+<marker id="a-rw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+<marker id="a-ro" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker>
+<marker id="a-deny" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker>
+</defs>
+<rect width="1500" height="960" fill="#FFFFFF"/>
+<text x="20" y="36" font-size="20" font-weight="700" fill="#0F172A">Claude Code in a Microsoft Execution Containers (MXC) sandbox</text>
+<text x="20" y="57" font-size="12" fill="#475569">Solution architecture · native Windows developer workstation · ProcessContainer backend with loopback egress proxy</text>
+<rect x="20" y="70" width="1070" height="870" rx="12" fill="#F7F9FC" stroke="#5B6B7F" stroke-width="1.5"/>
+<text x="34" y="92" font-size="13" font-weight="700" fill="#5B6B7F">Developer workstation · Windows 11 24H2+</text>
+<rect x="1110" y="70" width="370" height="870" rx="12" fill="#F6F8F3" stroke="#6B7F5B" stroke-width="1.5"/>
+<text x="1124" y="92" font-size="13" font-weight="700" fill="#6B7F5B">Internet / corporate network</text>
+<text x="1124" y="109" font-size="11" fill="#475569">reachable only if listed in allowlist.txt</text>
+<rect x="45" y="110" width="190" height="74" rx="8" fill="#FFFFFF" stroke="#334155" stroke-width="1.5"/>
+<text x="140.0" y="143.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Developer</text>
+<text x="140.0" y="162.5" text-anchor="middle" font-size="11" fill="#334155">PowerShell / Windows Terminal</text>
+<rect x="275" y="110" width="230" height="74" rx="8" fill="#EEF2FF" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="390.0" y="136.0" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Start-ClaudeSandbox.ps1</text>
+<text x="390.0" y="155.0" text-anchor="middle" font-size="11" fill="#334155">builds policy.json · env block</text>
+<text x="390.0" y="170.0" text-anchor="middle" font-size="11" fill="#334155">starts proxy · runs wxc-exec</text>
+<rect x="545" y="110" width="200" height="74" rx="8" fill="#EEF2FF" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="645.0" y="136.0" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">wxc-exec.exe</text>
+<text x="645.0" y="155.0" text-anchor="middle" font-size="11" fill="#334155">MXC runner (@microsoft/mxc-sdk)</text>
+<text x="645.0" y="170.0" text-anchor="middle" font-size="11" fill="#334155">--probe · Learn · Audit</text>
+<rect x="800" y="110" width="265" height="90" rx="8" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.8"/>
+<text x="932.5" y="136.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">egress-proxy.mjs</text>
+<text x="932.5" y="155.5" text-anchor="middle" font-size="11" fill="#334155">127.0.0.1:18080 (host side)</text>
+<text x="932.5" y="170.5" text-anchor="middle" font-size="11" fill="#334155">hostname allowlist · no TLS MITM</text>
+<text x="932.5" y="185.5" text-anchor="middle" font-size="11" fill="#334155">every decision → egress.jsonl</text>
+<rect x="45" y="234" width="1020" height="62" rx="8" fill="#E0E7FF" stroke="#3730A3" stroke-width="1.5"/>
+<text x="61" y="254.0" text-anchor="start" font-size="13" font-weight="700" fill="#0F172A">MXC enforcement layer  (Windows kernel / PSEC)</text>
+<text x="61" y="273.0" text-anchor="start" font-size="11" fill="#334155">AppContainer file ACLs · WFP filter: egress → proxy only</text>
+<text x="61" y="288.0" text-anchor="start" font-size="11" fill="#334155">job object: all child processes inherit · UI, clipboard, input off</text>
+<rect x="45" y="320" width="630" height="330" rx="12" fill="#FBFBFF" stroke="#4F46E5" stroke-width="2.0" stroke-dasharray="7 4"/>
+<text x="59" y="342" font-size="13" font-weight="700" fill="#4F46E5">MXC ProcessContainer (AppContainer, destroyOnExit)</text>
+<rect x="75" y="365" width="280" height="74" rx="8" fill="#FFFFFF" stroke="#4F46E5" stroke-width="2.4"/>
+<text x="215.0" y="391.0" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Claude Code (claude.exe)</text>
+<text x="215.0" y="410.0" text-anchor="middle" font-size="11" fill="#334155">interactive TUI via shared console</text>
+<text x="215.0" y="425.0" text-anchor="middle" font-size="11" fill="#334155">CLAUDE_CONFIG_DIR → sandbox state</text>
+<rect x="385" y="365" width="260" height="74" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.0"/>
+<text x="515.0" y="383.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Clean environment block</text>
+<text x="515.0" y="402.5" text-anchor="middle" font-size="11" fill="#334155">no host env vars or tokens</text>
+<text x="515.0" y="417.5" text-anchor="middle" font-size="11" fill="#334155">HTTP(S)_PROXY injected by MXC</text>
+<text x="515.0" y="432.5" text-anchor="middle" font-size="11" fill="#334155">no git credential helper</text>
+<rect x="75" y="475" width="180" height="66" rx="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.2"/>
+<text x="165.0" y="504.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Git Bash + git</text>
+<text x="165.0" y="523.5" text-anchor="middle" font-size="11" fill="#334155">commits locally, no push creds</text>
+<rect x="270" y="475" width="185" height="66" rx="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.2"/>
+<text x="362.5" y="504.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">node / npx</text>
+<text x="362.5" y="523.5" text-anchor="middle" font-size="11" fill="#334155">stdio MCP servers</text>
+<rect x="470" y="475" width="175" height="66" rx="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.2"/>
+<text x="557.5" y="504.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Plugins · skills · hooks</text>
+<text x="557.5" y="523.5" text-anchor="middle" font-size="11" fill="#334155">installed in sandbox config</text>
+<rect x="75" y="562" width="570" height="58" rx="8" fill="#FFFFFF" stroke="#64748B" stroke-width="1.2"/>
+<text x="360.0" y="587.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Build &amp; test tools</text>
+<text x="360.0" y="606.5" text-anchor="middle" font-size="11" fill="#334155">dotnet, python, npm scripts …  (toolchains added read-only via -ExtraReadOnly)</text>
+<rect x="710" y="330" width="355" height="62" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.5"/>
+<text x="887.5" y="357.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Project workspace — read/write</text>
+<text x="887.5" y="376.5" text-anchor="middle" font-size="11" fill="#334155">C:\src\&lt;repo&gt;  (incl. .git;  .env denied)</text>
+<rect x="710" y="405" width="355" height="92" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.5"/>
+<text x="887.5" y="432.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Sandbox state — read/write, private</text>
+<text x="887.5" y="451.5" text-anchor="middle" font-size="11" fill="#334155">%LOCALAPPDATA%\agent-sandboxes\&lt;name&gt;</text>
+<text x="887.5" y="466.5" text-anchor="middle" font-size="11" fill="#334155">home · .claude (plugins, MCP, login) · tmp</text>
+<text x="887.5" y="481.5" text-anchor="middle" font-size="11" fill="#334155">npm-cache · gitconfig · policy.json · logs</text>
+<rect x="710" y="510" width="355" height="62" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+<text x="887.5" y="537.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Host toolchain — read-only</text>
+<text x="887.5" y="556.5" text-anchor="middle" font-size="11" fill="#334155">claude.exe · Git for Windows · Node.js · extras</text>
+<rect x="710" y="585" width="355" height="72" rx="8" fill="#FEF2F2" stroke="#DC2626" stroke-width="1.5"/>
+<text x="887.5" y="610.0" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">User profile — no access</text>
+<text x="887.5" y="629.0" text-anchor="middle" font-size="11" fill="#334155">.ssh  .azure  .aws  .kube  ·  host ~\.claude</text>
+<text x="887.5" y="644.0" text-anchor="middle" font-size="11" fill="#334155">Credential Manager · browser profiles</text>
+<rect x="45" y="690" width="560" height="96" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.0"/>
+<text x="325.0" y="719.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Policy tuning loop</text>
+<text x="325.0" y="738.5" text-anchor="middle" font-size="11" fill="#334155">-Mode Learn  →  enforce + record blocked access (denials.json)</text>
+<text x="325.0" y="753.5" text-anchor="middle" font-size="11" fill="#334155">-Mode Audit  →  allow + record + Adjusted_*.json (trusted runs only)</text>
+<text x="325.0" y="768.5" text-anchor="middle" font-size="11" fill="#334155">egress.jsonl denies  →  edit allowlist.txt (hot reload)</text>
+<rect x="635" y="690" width="430" height="96" rx="8" fill="#FFFFFF" stroke="#334155" stroke-width="1.5"/>
+<text x="850.0" y="719.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Human in the loop</text>
+<text x="850.0" y="738.5" text-anchor="middle" font-size="11" fill="#334155">reviews diff &amp; local commits on the host</text>
+<text x="850.0" y="753.5" text-anchor="middle" font-size="11" fill="#334155">⑦ git push with the developer&#x27;s own credentials</text>
+<text x="850.0" y="768.5" text-anchor="middle" font-size="11" fill="#334155">(the sandbox has none)</text>
+<rect x="45" y="808" width="1020" height="118" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.0"/>
+<text x="61" y="841.0" text-anchor="start" font-size="13" font-weight="700" fill="#0F172A">Flow</text>
+<text x="61" y="860.0" text-anchor="start" font-size="11" fill="#334155">①  Developer starts the launcher for a workspace          ②  Launcher starts the allowlisting egress proxy on loopback</text>
+<text x="61" y="875.0" text-anchor="start" font-size="11" fill="#334155">③  Launcher writes policy.json, checks it with wxc-exec --probe, runs wxc-exec          ④  MXC creates the ProcessContainer</text>
+<text x="61" y="890.0" text-anchor="start" font-size="11" fill="#334155">⑤  Claude Code and every child process get only the granted paths: workspace + private state (RW), toolchain (RO)</text>
+<text x="61" y="905.0" text-anchor="start" font-size="11" fill="#334155">⑥  No direct sockets: all HTTP(S) goes through the proxy, which only forwards to allowlisted hostnames          ⑦  Humans push</text>
+<rect x="1135" y="125" width="325" height="56" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.3"/>
+<text x="1297.5" y="149.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">api.anthropic.com</text>
+<text x="1297.5" y="168.5" text-anchor="middle" font-size="11" fill="#334155">Claude API (model calls)</text>
+<rect x="1135" y="195" width="325" height="56" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.3"/>
+<text x="1297.5" y="219.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">claude.ai · platform.claude.com</text>
+<text x="1297.5" y="238.5" text-anchor="middle" font-size="11" fill="#334155">OAuth /login (omit when using an API key)</text>
+<rect x="1135" y="265" width="325" height="80" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.3"/>
+<text x="1297.5" y="286.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">GitHub</text>
+<text x="1297.5" y="305.5" text-anchor="middle" font-size="11" fill="#334155">github.com · api.github.com · codeload</text>
+<text x="1297.5" y="320.5" text-anchor="middle" font-size="11" fill="#334155">raw/objects.githubusercontent.com</text>
+<text x="1297.5" y="335.5" text-anchor="middle" font-size="11" fill="#334155">git fetch · plugin marketplaces</text>
+<rect x="1135" y="360" width="325" height="56" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="1.3"/>
+<text x="1297.5" y="384.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">registry.npmjs.org</text>
+<text x="1297.5" y="403.5" text-anchor="middle" font-size="11" fill="#334155">npx MCP servers · npm install</text>
+<rect x="1135" y="430" width="325" height="62" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1.3" stroke-dasharray="7 4"/>
+<text x="1297.5" y="457.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Internal Git / Artifactory mirror</text>
+<text x="1297.5" y="476.5" text-anchor="middle" font-size="11" fill="#334155">recommended: allowlist only these</text>
+<rect x="1135" y="510" width="325" height="62" rx="8" fill="#FEF2F2" stroke="#DC2626" stroke-width="1.3" stroke-dasharray="7 4"/>
+<text x="1297.5" y="537.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Everything else (incl. raw IPs)</text>
+<text x="1297.5" y="556.5" text-anchor="middle" font-size="11" fill="#334155">403 from proxy · logged as deny</text>
+<rect x="1135" y="600" width="325" height="80" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.0"/>
+<text x="1297.5" y="621.5" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">Not reachable from the sandbox</text>
+<text x="1297.5" y="640.5" text-anchor="middle" font-size="11" fill="#334155">Docker Desktop · localhost databases</text>
+<text x="1297.5" y="655.5" text-anchor="middle" font-size="11" fill="#334155">IDE extension (localhost WebSocket)</text>
+<text x="1297.5" y="670.5" text-anchor="middle" font-size="11" fill="#334155">→ use MXC wslc backend if needed</text>
+<rect x="1135" y="700" width="325" height="160" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.0"/>
+<text x="1149" y="722" font-size="13" font-weight="700" fill="#94A3B8">Legend</text>
+<path d="M235,147 L275,147" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<path d="M390,110 L390,88 L932,88 L932,110" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<path d="M505,147 L545,147" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<path d="M600,184 L600,320" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<path d="M650,320 L650,308 L932,308 L932,200" fill="none" stroke="#EA580C" stroke-width="1.8" marker-end="url(#a-net)"/>
+<path d="M120,320 L120,296" fill="none" stroke="#DC2626" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#a-deny)"/>
+<path d="M215,439 L215,457 L165,457 L165,475" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<path d="M215,457 L362,457 L362,475" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<path d="M362,457 L557,457 L557,475" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<path d="M165,541 L165,562" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<path d="M675,361 L710,361" fill="none" stroke="#059669" stroke-width="1.8" marker-end="url(#a-rw)"/>
+<path d="M675,451 L710,451" fill="none" stroke="#059669" stroke-width="1.8" marker-end="url(#a-rw)"/>
+<path d="M675,541 L710,541" fill="none" stroke="#2563EB" stroke-width="1.8" marker-end="url(#a-ro)"/>
+<path d="M675,621 L710,621" fill="none" stroke="#DC2626" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#a-deny)"/>
+<path d="M1065,155 L1100,155 L1100,153 L1135,153" fill="none" stroke="#EA580C" stroke-width="1.8" marker-end="url(#a-net)"/>
+<path d="M1100,155 L1100,223 L1135,223" fill="none" stroke="#EA580C" stroke-width="1.8" marker-end="url(#a-net)"/>
+<path d="M1100,223 L1100,305 L1135,305" fill="none" stroke="#EA580C" stroke-width="1.8" marker-end="url(#a-net)"/>
+<path d="M1100,305 L1100,388 L1135,388" fill="none" stroke="#EA580C" stroke-width="1.8" marker-end="url(#a-net)"/>
+<path d="M1100,388 L1100,461 L1135,461" fill="none" stroke="#EA580C" stroke-width="1.8" marker-end="url(#a-net)"/>
+<path d="M1065,188 L1112,188 L1112,541 L1135,541" fill="none" stroke="#DC2626" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#a-deny)"/>
+<path d="M1065,738 L1123,738 L1123,330 L1135,330" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<rect x="246.8" y="128" width="16.3" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="255" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">①</text>
+<rect x="614.0" y="77" width="91.9" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="660" y="89" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">② start proxy</text>
+<rect x="516.9" y="128" width="16.3" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="525" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">③</text>
+<rect x="604.0" y="207" width="192.7" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="608" y="219" text-anchor="start" font-size="11" font-weight="600" fill="#334155">④ create container per policy</text>
+<rect x="719.4" y="297" width="161.2" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="800" y="309" text-anchor="middle" font-size="11" font-weight="600" fill="#EA580C">⑥ HTTP(S) only via proxy</text>
+<rect x="126.0" y="299" width="199.0" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="130" y="311" text-anchor="start" font-size="11" font-weight="600" fill="#DC2626">✕ direct sockets blocked (WFP)</text>
+<rect x="683.9" y="343" width="16.3" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="692" y="355" text-anchor="middle" font-size="11" font-weight="600" fill="#059669">⑤</text>
+<rect x="683.9" y="603" width="16.3" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="692" y="615" text-anchor="middle" font-size="11" font-weight="600" fill="#DC2626">✕</text>
+<rect x="1085.8" y="720" width="16.3" height="16" rx="3" fill="#FFFFFF" opacity="0.95"/>
+<text x="1094" y="732" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">⑦</text>
+<path d="M1152,745 L1196,745" stroke="#059669" stroke-width="1.8" marker-end="url(#a-rw)"/>
+<text x="1210" y="749" font-size="11" fill="#334155">read/write access</text>
+<path d="M1152,767 L1196,767" stroke="#2563EB" stroke-width="1.8" marker-end="url(#a-ro)"/>
+<text x="1210" y="771" font-size="11" fill="#334155">read-only access</text>
+<path d="M1152,789 L1196,789" stroke="#DC2626" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#a-deny)"/>
+<text x="1210" y="793" font-size="11" fill="#334155">denied / blocked</text>
+<path d="M1152,811 L1196,811" stroke="#EA580C" stroke-width="1.8" marker-end="url(#a-net)"/>
+<text x="1210" y="815" font-size="11" fill="#334155">network via egress proxy</text>
+<path d="M1152,833 L1196,833" stroke="#334155" stroke-width="1.5" marker-end="url(#a-flow)"/>
+<text x="1210" y="837" font-size="11" fill="#334155">control flow</text>
+</svg>

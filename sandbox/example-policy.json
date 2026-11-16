@@ -1,0 +1,59 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/mxc/main/schemas/stable/mxc-config.schema.1.0.0.json",
+  "_comment": "What Start-ClaudeSandbox.ps1 generates for C:\\src\\my-repo (user 'joerg'). For reading/review - the script writes the real one per run.",
+  "version": "1.0.0",
+  "containment": "processcontainer",
+  "lifecycle": { "destroyOnExit": true },
+  "process": {
+    "commandLine": "\"C:\\Users\\joerg\\.local\\bin\\claude.exe\"",
+    "cwd": "C:\\src\\my-repo",
+    "env": [
+      "SYSTEMROOT=C:\\WINDOWS",
+      "WINDIR=C:\\WINDOWS",
+      "COMSPEC=C:\\WINDOWS\\system32\\cmd.exe",
+      "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.JS;.PS1",
+      "PROCESSOR_ARCHITECTURE=AMD64",
+      "PATH=C:\\Users\\joerg\\.local\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\nodejs;C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\npm-global;C:\\WINDOWS\\System32;C:\\WINDOWS",
+      "USERPROFILE=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\home",
+      "HOME=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\home",
+      "LOCALAPPDATA=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\home\\AppData\\Local",
+      "APPDATA=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\home\\AppData\\Roaming",
+      "TEMP=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\tmp",
+      "TMP=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\tmp",
+      "CLAUDE_CONFIG_DIR=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\home\\.claude",
+      "CLAUDE_CODE_GIT_BASH_PATH=C:\\Program Files\\Git\\bin\\bash.exe",
+      "DISABLE_AUTOUPDATER=1",
+      "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1",
+      "GIT_CONFIG_GLOBAL=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\gitconfig",
+      "GIT_CONFIG_NOSYSTEM=1",
+      "GIT_TERMINAL_PROMPT=0",
+      "npm_config_cache=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\npm-cache",
+      "npm_config_prefix=C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo\\npm-global"
+    ],
+    "timeout": 0
+  },
+  "filesystem": {
+    "readwritePaths": [
+      "C:\\src\\my-repo",
+      "C:\\Users\\joerg\\AppData\\Local\\agent-sandboxes\\my-repo"
+    ],
+    "readonlyPaths": [
+      "C:\\Users\\joerg\\.local\\bin",
+      "C:\\Users\\joerg\\.local\\share\\claude",
+      "C:\\Program Files\\Git",
+      "C:\\Program Files\\nodejs"
+    ],
+    "deniedPaths": [
+      "C:\\src\\my-repo\\.env",
+      "C:\\Users\\joerg\\.ssh",
+      "C:\\Users\\joerg\\.azure",
+      "C:\\Users\\joerg\\.claude"
+    ]
+  },
+  "network": {
+    "egress": { "default": "deny" },
+    "ingress": { "default": "allow", "hostLoopback": "allow" }
+  },
+  "runtimeConfig": { "networkProxy": "http://127.0.0.1:18080" },
+  "ui": { "disable": true, "clipboard": "none", "injection": false }
+}
